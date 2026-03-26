@@ -32,22 +32,22 @@ export default function Home() {
       {/* ── Nav ─────────────────────────────────────────────────────── */}
       <header className="fixed top-0 inset-x-0 z-50 border-b border-[#161616] bg-[#0a0a0a]/90 backdrop-blur-sm">
         <div className="max-w-3xl mx-auto px-6 sm:px-10 h-14 flex items-center justify-between">
-          <a href="/" className="text-sm font-medium text-[#dedad3] no-underline">
-            S.
+          <a href="#home" className="text-sm font-medium text-[#dedad3] no-underline">
+            Home
           </a>
           <nav className="flex items-center gap-7">
-            <a href="#about"   className="nav-item">About</a>
-            <a href="#work"    className="nav-item">Work</a>
+            <a href="#about" className="nav-item">About</a>
+            <a href="#work" className="nav-item">Work</a>
             <a href="#contact" className="nav-item">Contact</a>
           </nav>
         </div>
       </header>
 
       {/* ── Hero ────────────────────────────────────────────────────── */}
-      <section className="max-w-3xl mx-auto px-6 sm:px-10 pt-36 pb-32">
+      <section id="home" className="max-w-3xl mx-auto px-6 sm:px-10 pt-36 pb-32">
         <p className="appear text-xs tracking-widest uppercase text-[#3e3e3e] mb-10 flex items-center gap-2">
           <span className="avail-dot" aria-hidden="true" />
-          Available for work
+          Not Available for work right now
         </p>
 
         <h1
@@ -57,18 +57,18 @@ export default function Home() {
             fontSize: "clamp(3.25rem, 9vw, 6.5rem)",
           }}
         >
-          Shanmukh.
+          Shanmukha
         </h1>
 
         <p className="appear appear-2 text-[var(--fg-2)] font-light max-w-sm leading-relaxed mb-12"
           style={{ fontSize: "1.0625rem" }}>
-          Full-stack developer. I craft precise, purposeful web
-          experiences — fast, accessible, and built to last.
+          Software developer. <br />
+          Art doesn't just exist in drawings..
         </p>
 
         <div className="appear appear-3 flex items-center gap-8">
-          <a href="#work"    className="tlink text-sm">Selected work ↓</a>
-          <a href="#contact" className="tlink text-sm">Get in touch →</a>
+          <a href="#work" className="tlink text-sm">Selected works</a>
+          <a href="#contact" className="tlink text-sm">Get in touch</a>
         </div>
       </section>
 
@@ -151,12 +151,13 @@ export default function Home() {
           Stack
         </p>
         <p
-          className="text-[0.75rem] text-[#333] leading-loose"
+          className="text-[0.75rem] text-[#6b6b6b] leading-loose"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          JavaScript&nbsp;·&nbsp;TypeScript&nbsp;·&nbsp;React&nbsp;·&nbsp;Next.js&nbsp;·&nbsp;
-          Node.js&nbsp;·&nbsp;Python&nbsp;·&nbsp;PostgreSQL&nbsp;·&nbsp;MongoDB&nbsp;·&nbsp;
-          Tailwind CSS&nbsp;·&nbsp;Docker&nbsp;·&nbsp;REST APIs&nbsp;·&nbsp;Git
+          JavaScript&nbsp;·&nbsp;Java&nbsp;·&nbsp;Go&nbsp;·&nbsp;Kotlin&nbsp;·&nbsp;C&nbsp;·&nbsp;C++&nbsp;·&nbsp;Python&nbsp;·&nbsp;
+React&nbsp;·&nbsp;Next.js&nbsp;·&nbsp;Node.js&nbsp;·&nbsp;Express&nbsp;·&nbsp;Android (Flutter and Android Studio)&nbsp;·&nbsp;
+MongoDB&nbsp;·&nbsp;Firebase&nbsp;·&nbsp;Supabase&nbsp;·&nbsp;MinIO&nbsp;·&nbsp;
+Git&nbsp;·&nbsp;Cloudflare (Tunnels)&nbsp;·&nbsp;Netlify&nbsp;·&nbsp;Vercel&nbsp;·&nbsp;VPS's (Ubuntu)
         </p>
       </section>
 
@@ -177,15 +178,15 @@ export default function Home() {
             fontSize: "clamp(2rem, 5.5vw, 3.75rem)",
           }}
         >
-          Let&apos;s build<br />something great.
+          Let&apos;s build<br />something great!
         </h2>
 
         <div className="flex flex-col gap-3.5">
           <a
-            href="mailto:hello@psssvst.com"
+            href="mailto:me@psssvst.com"
             className="tlink text-sm w-fit"
           >
-            hello@psssvst.com ↗
+            me@psssvst.com
           </a>
           <a
             href="https://github.com/Shanmukhsvstp"
@@ -193,15 +194,15 @@ export default function Home() {
             rel="noopener noreferrer"
             className="tlink text-sm w-fit"
           >
-            GitHub ↗
+            GitHub
           </a>
           <a
-            href="https://linkedin.com/in/shanmukh"
+            href="https://linkedin.com/in/psssvst"
             target="_blank"
             rel="noopener noreferrer"
             className="tlink text-sm w-fit"
           >
-            LinkedIn ↗
+            LinkedIn
           </a>
         </div>
       </section>
@@ -209,7 +210,7 @@ export default function Home() {
       {/* ── Footer ──────────────────────────────────────────────────── */}
       <footer className="max-w-3xl mx-auto px-6 sm:px-10 py-8 border-t border-[#161616] flex items-center justify-between">
         <span className="text-[0.7rem] text-[#2e2e2e]">
-          Shanmukh · {new Date().getFullYear()}
+          All rights reserved &copy; {new Date().getFullYear()}
         </span>
         <span
           className="text-[0.7rem] text-[#2e2e2e]"

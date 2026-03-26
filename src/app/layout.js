@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Shanmukh · Portfolio",
+  title: "Shanmukha · Portfolio",
   description:
-    "Personal portfolio of Shanmukh — developer, designer, and maker of things.",
+    "Personal portfolio of Shanmukha — developer, designer, and maker of things.",
 };
 
 export default function RootLayout({ children }) {
