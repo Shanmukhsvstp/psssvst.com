@@ -6,6 +6,9 @@ export default function Home() {
     "Art doesn't just exist in drawings..",
     "Where elegance matters",
     "Extracting art out of pixels",
+    "Code is poetry, and I write poems",
+    "Not everything meaningful is visible",
+    "Something exists beneath the surface"
   ];
   const linesLength = lines.length;
   const [quoteIndex, setQuoteIndex] = useState(0);
@@ -41,12 +44,12 @@ export default function Home() {
       num: "03",
       title: "ConferIt (Formely PsMeet)",
       desc: [
-        "Zoom-like video conferencing app in active development",
+        "Zoom-like video conferencing app in development",
         "Built around low-latency meetings and collaboration workflows",
       ],
       tags: ["Node.js", "WebRTC", "Next.js"],
       year: "2024",
-      status: "In Progress",
+      status: "Paused",
       href: "https://conferit.com",
     },
     {
@@ -54,7 +57,7 @@ export default function Home() {
       title: "ViewGrow",
       desc: [
         "Simple YouTube growth assistant application",
-        "Built to help creators track and improve content momentum",
+        "Built to help newer creators improve content strategy",
       ],
       tags: ["Android", "Java"],
       year: "2024",
@@ -79,7 +82,7 @@ export default function Home() {
       title: "TechEcho",
       desc: [
         "Tech news website for quick, readable updates",
-        "Curates recent stories with a clean editorial layout",
+        // "Curates recent stories with a clean editorial layout",
       ],
       tags: ["HTML"],
       year: "2024",
@@ -157,7 +160,7 @@ export default function Home() {
     },
     {
       id: "03",
-      role: "Android Developer and Fullstack Developer",
+      role: "Android Developer and Full-stack Developer",
       company: "Lemly Inc.",
       companyUrl: "https://lemly.io",
       type: "Independent",
@@ -168,10 +171,23 @@ export default function Home() {
         "Working on a few things related to backend and infrastructure as well",
       ],
     },
+    {
+      id: "04",
+      role: "Full-stack Developer",
+      company: "Aurelia Health",
+      companyUrl: "https://aureliahealth.org",
+      type: "Independent, Non-Profit",
+      period: "2025 - Present",
+      location: "Remote",
+      highlights: [
+        "Complete web development for the platform",
+        "Highly focused on smooth and elegant UI/UX, and efficiency in the workflows",
+      ],
+    },
   ];
 
   const stack = {
-    languages: ["Java", "C", "C++", "Go", "Python","JavaScript", "Kotlin", "SQL", "HTML", "CSS", "Dart"],
+    languages: ["Java", "C", "C++", "Go", "Python", "JavaScript", "Kotlin", "SQL", "HTML", "CSS", "Dart"],
     frameworks: ["React", "Next.js", "Node.js", "Express", "Android (Flutter and Android Studio)", "WinUI3"],
     tools: ["MongoDB", "Firebase", "Supabase", "Neon", "MinIO", "Git", "Cloudflare (Tunnels)", "Netlify", "Vercel", "VPS's (Ubuntu)"],
   };
@@ -205,7 +221,7 @@ export default function Home() {
         window.localStorage.setItem(storageKey, String(nextIndex));
         return nextIndex;
       });
-    }, 3000);
+    }, 10000);
 
     return () => clearInterval(intervalId);
   }, [linesLength]);
@@ -230,22 +246,6 @@ export default function Home() {
       window.removeEventListener("keydown", handleEsc);
     };
   }, [isResumePreviewOpen]);
-
-  const handleProjectPointerMove = (event) => {
-    const row = event.currentTarget;
-    const rect = row.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    row.style.setProperty("--mx", `${x}px`);
-    row.style.setProperty("--my", `${y}px`);
-  };
-
-  const resetProjectPointer = (event) => {
-    const row = event.currentTarget;
-    row.style.setProperty("--mx", "50%");
-    row.style.setProperty("--my", "50%");
-  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
@@ -282,6 +282,10 @@ export default function Home() {
         >
           Shanmukha
         </h1>
+        <p className="text-sm text-[#6b6b6b]">
+          9+ years coding · 15+ apps shipped · building system-level tools
+        </p>
+        <br/>
 
         <p className="appear appear-2 text-[var(--fg-2)] font-light max-w-sm leading-relaxed mb-12"
           style={{ fontSize: "1.2rem" }}>
@@ -313,68 +317,66 @@ export default function Home() {
             const descPoints = Array.isArray(p.desc) ? p.desc : [p.desc];
 
             return (
-            <div
-              key={p.num}
-              className="project-row group"
-              onMouseMove={handleProjectPointerMove}
-              onMouseLeave={resetProjectPointer}
-            >
-              <span className="row-num">{p.num}</span>
-              <div className="row-body">
-                <div className="row-top">
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="row-title-link"
-                  >
-                    <span className="row-title">{p.title}</span>
-                  </a>
-                  <span className="row-meta">
-
-                    <span className="row-status">
-                      {p.status} ·
-                    </span>
-
-                    <span className="row-year">{p.year}</span>
-                    {p.github ? (
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="row-github"
-                        aria-label={`${p.title} GitHub repository`}
-                      >
-                        GitHub
-                      </a>
-                    ) : null}
+              <div
+                key={p.num}
+                className="project-row group"
+              >
+                <span className="row-num">{p.num}</span>
+                <div className="row-body">
+                  <div className="row-top">
                     <a
                       href={p.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="row-arrow"
-                      aria-label={`Open ${p.title}`}
+                      className="row-title-link"
                     >
-                      ↗
+                      <span className="row-title">{p.title}</span>
                     </a>
-                  </span>
-                </div>
-                {/* <p className="row-tags">{p.tags}</p> */}
-                <p className="row-tags">
-                  {p.tags.map((tag, i) => (
-                    <span key={tag}>
-                      <span className="tag">{tag}</span>
-                        {i < p.tags.length - 1 ? " · " : null}
+                    <span className="row-meta">
+
+                      <span className="row-status">
+                        {p.status} ·
+                      </span>
+
+                      <span className="row-year">{p.year}</span>
+                      {p.github ? (
+                        <a
+                          href={p.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="row-github"
+                          aria-label={`${p.title} GitHub repository`}
+                        >
+                          GitHub
+                        </a>
+                      ) : null}
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="row-arrow"
+                        aria-label={`Open ${p.title}`}
+                      >
+                        ↗
+                      </a>
                     </span>
-                  ))}
-                </p>
-                <ul className="row-desc-list" aria-label={`${p.title} highlights`}>
-                  {descPoints.map((point) => (
-                    <li key={point} className="row-desc-item">{point}</li>
-                  ))}
-                </ul>
+                  </div>
+                  {/* <p className="row-tags">{p.tags}</p> */}
+                  <p className="row-tags">
+                    {p.tags.map((tag, i) => (
+                      <span key={tag}>
+                        <span className="tag">{tag}</span>
+                        {i < p.tags.length - 1 ? " · " : null}
+                      </span>
+                    ))}
+                  </p>
+                  <ul className="row-desc-list" aria-label={`${p.title} highlights`}>
+                    {descPoints.map((point) => (
+                      <li key={point} className="row-desc-item">{point}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
             );
           })}
         </div>
@@ -468,19 +470,19 @@ export default function Home() {
 
           <div className="space-y-5 text-[0.875rem] text-[#6b6b6b] leading-[1.9]">
             <p>
-              I&apos;m Shanmukha, I build software across Android, Web, 
+              I&apos;m Shanmukha, I build software across Android, Web,
               and Windows.
-              While my focus is always on efficiency and the goal, 
+              While my focus is always on efficiency and the goal,
               I also deeply care about asthetics and design.
             </p>
             <p>
-              My works spans various stacks and domains, but I&apos;m especially passionate about tools and utilities that enhance productivity and creativity. 
+              My works spans various stacks and domains, but I&apos;m especially passionate about tools and utilities that enhance productivity and creativity.
               I enjoy working and learning stacks that allow me to reach closer to the systems. I love to build tools that require a deep understanding of the underlying platform, whether it&apos;s a low-level code or high-level permission based applications.
               Lately have been exploring the world of NPUs and am currently building a benchmarking suite for them, which is a space I find really fascinating.
               Also exploring the intersection of software and hardware with a personal project around building a smart clock, which has been a fun way to dive into IoT and embedded systems,
               And would be deep into IoT and embedded systems, may be by build one using a custom SoCs like RISC-V or ARM, soon maybe?
               I&apos;d also love to research or go deep into areas like compilers, operating systems, embedded systems, and machine learning, anything new actually.
-              
+
             </p>
             <p>
               Currently open to the projects/jobs that I've proactively applied to, or genuinely interested in.
@@ -580,58 +582,73 @@ export default function Home() {
         <div className="flex flex-col gap-3.5">
           <a
             href="mailto:me@psssvst.com"
-              className="tlink contact-link text-sm w-fit"
+            className="tlink contact-link text-sm w-fit"
           >
-              <span className="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 6h16v12H4z" />
-                  <path d="m4 7 8 6 8-6" />
-                </svg>
-              </span>
-              <span>me@psssvst.com</span>
+            <span className="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 6h16v12H4z" />
+                <path d="m4 7 8 6 8-6" />
+              </svg>
+            </span>
+            <span>me@psssvst.com</span>
           </a>
           <a
             href="https://github.com/Shanmukhsvstp"
             target="_blank"
             rel="noopener noreferrer"
-              className="tlink contact-link text-sm w-fit"
+            className="tlink contact-link text-sm w-fit"
           >
-              <span className="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 18c-3 1-3-1.5-4.5-2" />
-                  <path d="M14.5 20v-2.2c0-.8.1-1.4-.4-2 2.7-.3 5.4-1.3 5.4-5.8a4.5 4.5 0 0 0-1.2-3.1 4.2 4.2 0 0 0-.1-3.1s-1-.3-3.2 1.2a11 11 0 0 0-6 0C6.8 3.5 5.8 3.8 5.8 3.8a4.2 4.2 0 0 0-.1 3.1A4.5 4.5 0 0 0 4.5 10c0 4.5 2.7 5.5 5.4 5.8-.5.6-.5 1.4-.5 2V20" />
-                </svg>
-              </span>
-              <span>GitHub</span>
+            <span className="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18c-3 1-3-1.5-4.5-2" />
+                <path d="M14.5 20v-2.2c0-.8.1-1.4-.4-2 2.7-.3 5.4-1.3 5.4-5.8a4.5 4.5 0 0 0-1.2-3.1 4.2 4.2 0 0 0-.1-3.1s-1-.3-3.2 1.2a11 11 0 0 0-6 0C6.8 3.5 5.8 3.8 5.8 3.8a4.2 4.2 0 0 0-.1 3.1A4.5 4.5 0 0 0 4.5 10c0 4.5 2.7 5.5 5.4 5.8-.5.6-.5 1.4-.5 2V20" />
+              </svg>
+            </span>
+            <span>GitHub</span>
           </a>
           <a
             href="https://linkedin.com/in/psssvst"
             target="_blank"
             rel="noopener noreferrer"
-              className="tlink contact-link text-sm w-fit"
+            className="tlink contact-link text-sm w-fit"
           >
-              <span className="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 1 0-4 0v6h-4v-6a6 6 0 0 1 6-6z" />
-                  <path d="M2 9h4v11H2z" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-              </span>
-              <span>LinkedIn</span>
+            <span className="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 1 0-4 0v6h-4v-6a6 6 0 0 1 6-6z" />
+                <path d="M2 9h4v11H2z" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </span>
+            <span>LinkedIn</span>
           </a>
           <a
             href="https://youtube.com/@ParaPlatforms"
             target="_blank"
             rel="noopener noreferrer"
-              className="tlink contact-link text-sm w-fit"
+            className="tlink contact-link text-sm w-fit"
           >
-              <span className="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="3" />
-                  <path d="m10 10 5 2-5 2z" />
-                </svg>
-              </span>
-              <span>YouTube</span>
+            <span className="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2.5" y="6" width="19" height="12" rx="3" />
+                <path d="m10 10 5 2-5 2z" />
+              </svg>
+            </span>
+            <span>YouTube</span>
+          </a>
+          <a
+            href="https://play.google.com/store/apps/dev?id=7180006672053878625"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tlink contact-link text-sm w-fit"
+          >
+            <span className="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+                <path d="M5.5 4.5v15L18.7 12 5.5 4.5z" opacity="0.28" />
+                <path d="M5.5 4.5 12.1 11.1 9.4 13.9 5.5 19.5z" opacity="0.58" />
+                <path d="M12.1 11.1 18.7 12 9.4 13.9z" />
+              </svg>
+            </span>
+            <span>Play Store</span>
           </a>
         </div>
       </section>
