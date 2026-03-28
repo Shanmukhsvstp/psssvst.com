@@ -9,6 +9,7 @@ export default function Home() {
   ];
   const linesLength = lines.length;
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false);
 
 
   const projects = [
@@ -120,10 +121,67 @@ export default function Home() {
     // },
   ];
 
+  const experiences = [
+    {
+      id: "01",
+      role: "Founder & Developer",
+      company: "Para Platforms",
+      companies: [
+        { label: "Para Platforms", url: "https://parapf.com/" },
+        { label: "ConferIt", url: "https://conferit.com" },
+      ],
+      type: "Independent",
+      period: "2022 - Present",
+      location: "Remote",
+      highlights: [
+        "Building and shipping utility-first products across web and android",
+        "Development of various tools and utilities",
+      ],
+    },
+    {
+      id: "02",
+      role: "Founder & Developer",
+      company: "NeuraBench",
+      companyUrl: "https://neurabench.com",
+      companies: [
+        { label: "NPU Test (Stress Testing)", url: "https://nputest.com/" },
+        { label: "NeuraBench", url: "https://neurabench.com" },
+      ],
+      type: "Independent",
+      period: "2025 - Present",
+      location: "Remote",
+      highlights: [
+        "Designing repeatable NPU benchmarking pipelines and reports",
+        "Building a modern WinUI3 interface for profiling workflows",
+      ],
+    },
+    {
+      id: "03",
+      role: "Android Developer and Fullstack Developer",
+      company: "Lemly Inc.",
+      companyUrl: "https://lemly.io",
+      type: "Independent",
+      period: "2025 - 2026",
+      location: "Remote",
+      highlights: [
+        "Android application development for the platform",
+        "Working on a few things related to backend and infrastructure as well",
+      ],
+    },
+  ];
+
   const stack = {
     languages: ["Java", "C", "C++", "Go", "Python","JavaScript", "Kotlin", "SQL", "HTML", "CSS", "Dart"],
     frameworks: ["React", "Next.js", "Node.js", "Express", "Android (Flutter and Android Studio)", "WinUI3"],
     tools: ["MongoDB", "Firebase", "Supabase", "Neon", "MinIO", "Git", "Cloudflare (Tunnels)", "Netlify", "Vercel", "VPS's (Ubuntu)"],
+  };
+
+  const now = {
+    updated: "March 2026",
+    focus: [
+      "Building NeuraBench into a reliable NPU benchmarking platform",
+      "Exploring product direction for CloudClock and connected cloud/backend",
+    ],
   };
 
   useEffect(() => {
@@ -147,10 +205,31 @@ export default function Home() {
         window.localStorage.setItem(storageKey, String(nextIndex));
         return nextIndex;
       });
-    }, 1000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [linesLength]);
+
+  useEffect(() => {
+    if (!isResumePreviewOpen) {
+      return;
+    }
+
+    const handleEsc = (event) => {
+      if (event.key === "Escape") {
+        setIsResumePreviewOpen(false);
+      }
+    };
+
+    const previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEsc);
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [isResumePreviewOpen]);
 
   const handleProjectPointerMove = (event) => {
     const row = event.currentTarget;
@@ -180,6 +259,8 @@ export default function Home() {
           <nav className="flex items-center gap-7">
             <a href="#about" className="nav-item">About</a>
             <a href="#work" className="nav-item">Work</a>
+            <a href="#experience" className="nav-item">Experience</a>
+            <a href="#now" className="nav-item">Now</a>
             <a href="#contact" className="nav-item">Contact</a>
           </nav>
         </div>
@@ -299,6 +380,76 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Experience ─────────────────────────────────────────────── */}
+      <section id="experience" className="max-w-3xl mx-auto px-6 sm:px-10 py-20">
+        <div className="experience-head">
+          <p className="text-xs tracking-widest uppercase text-[#2e2e2e]">
+            Experience
+          </p>
+          <p className="experience-caption">Places I&apos;ve worked</p>
+        </div>
+
+        <div className="experience-list" aria-label="Work experience list">
+          {experiences.map((item) => {
+            const companyItems = Array.isArray(item.companies)
+              ? item.companies
+              : [{ label: item.company, url: item.companyUrl }];
+            const companyLabel = companyItems
+              .map((companyItem) => companyItem.label)
+              .filter(Boolean)
+              .join(" / ");
+
+            return (
+              <article key={item.id} className="experience-row">
+                <span className="experience-num">{item.id}</span>
+
+                <div className="experience-body">
+                  <div className="experience-top">
+                    <div className="experience-title-wrap">
+                      <h3 className="experience-role">{item.company} - {item.role}</h3>
+
+                      <p className="experience-company-list">
+                        {companyItems.map((companyItem, index) => (
+                          <span key={`${item.id}-${companyItem.label}-${index}`}>
+                            {companyItem.url ? (
+                              <a
+                                href={companyItem.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="experience-company"
+                              >
+                                {companyItem.label} ↗
+                              </a>
+                            ) : (
+                              <span className="experience-company">{companyItem.label}</span>
+                            )}
+                            {index < companyItems.length - 1 ? (
+                              <span className="experience-company-sep" aria-hidden="true"> · </span>
+                            ) : null}
+                          </span>
+                        ))}
+                      </p>
+                    </div>
+
+                    <div className="experience-meta">
+                      <span>{item.type}</span>
+                      <span>{item.period}</span>
+                      <span>{item.location}</span>
+                    </div>
+                  </div>
+
+                  <ul className="experience-points" aria-label={`${companyLabel || "Experience"} highlights`}>
+                    {item.highlights.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
       {/* ── About ───────────────────────────────────────────────────── */}
       <section id="about" className="max-w-3xl mx-auto px-6 sm:px-10 py-20">
         <p className="text-xs tracking-widest uppercase text-[#2e2e2e] mb-10">
@@ -317,27 +468,42 @@ export default function Home() {
 
           <div className="space-y-5 text-[0.875rem] text-[#6b6b6b] leading-[1.9]">
             <p>
-              I&apos;m Shanmukh, a developer who cares deeply about the
-              intersection of engineering and craft. I build products that feel
-              good to use — from the first interaction to the last.
+              I&apos;m Shanmukha, I build software across Android, Web, 
+              and Windows.
+              While my focus is always on efficiency and the goal, 
+              I also deeply care about asthetics and design.
             </p>
             <p>
-              My work spans full-stack web development, developer tooling, and
-              the occasional side project that scratches a personal itch.
-              Comfortable across the whole stack: React and Next.js on the
-              frontend, Node.js and Python on the backend, and PostgreSQL or
-              MongoDB for data.
+              My works spans various stacks and domains, but I&apos;m especially passionate about tools and utilities that enhance productivity and creativity. 
+              I enjoy working and learning stacks that allow me to reach closer to the systems. I love to build tools that require a deep understanding of the underlying platform, whether it&apos;s a low-level code or high-level permission based applications.
+              Lately have been exploring the world of NPUs and am currently building a benchmarking suite for them, which is a space I find really fascinating.
+              Also exploring the intersection of software and hardware with a personal project around building a smart clock, which has been a fun way to dive into IoT and embedded systems,
+              And would be deep into IoT and embedded systems, may be by build one using a custom SoCs like RISC-V or ARM, soon maybe?
+              I&apos;d also love to research or go deep into areas like compilers, operating systems, embedded systems, and machine learning, anything new actually.
+              
             </p>
             <p>
-              Currently open to freelance projects and full-time roles.
+              Currently open to the projects/jobs that I've proactively applied to, or genuinely interested in.
             </p>
-            <a
-              href="/resume.pdf"
-              className="tlink text-sm inline-block mt-1"
-              aria-label="Download resume PDF"
-            >
-              Download résumé ↓
-            </a>
+            <div className="resume-actions" role="group" aria-label="Resume actions">
+              <a
+                href="/resume.pdf"
+                className="tlink text-sm inline-block mt-1"
+                aria-label="Download resume PDF"
+              >
+                Download résumé ↓
+              </a>
+              <button
+                type="button"
+                className="resume-preview-btn"
+                onClick={() => setIsResumePreviewOpen(true)}
+                aria-haspopup="dialog"
+                aria-expanded={isResumePreviewOpen}
+                aria-controls="resume-preview-dialog"
+              >
+                Preview résumé ↗
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -373,6 +539,24 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Now ─────────────────────────────────────────────────────── */}
+      <div className="max-w-3xl mx-auto px-6 sm:px-10">
+        <hr className="border-[#161616]" />
+      </div>
+
+      <section id="now" className="max-w-3xl mx-auto px-6 sm:px-10 py-16">
+        <div className="now-head">
+          <p className="text-xs tracking-widest uppercase text-[#2e2e2e]">Now</p>
+          <p className="now-updated">Updated {now.updated}</p>
+        </div>
+
+        <ul className="now-list" aria-label="Current focus">
+          {now.focus.map((item) => (
+            <li key={item} className="now-item">{item}</li>
+          ))}
+        </ul>
+      </section>
+
       {/* ── Contact ─────────────────────────────────────────────────── */}
       <div className="max-w-3xl mx-auto px-6 sm:px-10">
         <hr className="border-[#161616]" />
@@ -396,28 +580,106 @@ export default function Home() {
         <div className="flex flex-col gap-3.5">
           <a
             href="mailto:me@psssvst.com"
-            className="tlink text-sm w-fit"
+              className="tlink contact-link text-sm w-fit"
           >
-            me@psssvst.com
+              <span className="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 6h16v12H4z" />
+                  <path d="m4 7 8 6 8-6" />
+                </svg>
+              </span>
+              <span>me@psssvst.com</span>
           </a>
           <a
             href="https://github.com/Shanmukhsvstp"
             target="_blank"
             rel="noopener noreferrer"
-            className="tlink text-sm w-fit"
+              className="tlink contact-link text-sm w-fit"
           >
-            GitHub
+              <span className="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18c-3 1-3-1.5-4.5-2" />
+                  <path d="M14.5 20v-2.2c0-.8.1-1.4-.4-2 2.7-.3 5.4-1.3 5.4-5.8a4.5 4.5 0 0 0-1.2-3.1 4.2 4.2 0 0 0-.1-3.1s-1-.3-3.2 1.2a11 11 0 0 0-6 0C6.8 3.5 5.8 3.8 5.8 3.8a4.2 4.2 0 0 0-.1 3.1A4.5 4.5 0 0 0 4.5 10c0 4.5 2.7 5.5 5.4 5.8-.5.6-.5 1.4-.5 2V20" />
+                </svg>
+              </span>
+              <span>GitHub</span>
           </a>
           <a
             href="https://linkedin.com/in/psssvst"
             target="_blank"
             rel="noopener noreferrer"
-            className="tlink text-sm w-fit"
+              className="tlink contact-link text-sm w-fit"
           >
-            LinkedIn
+              <span className="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 1 0-4 0v6h-4v-6a6 6 0 0 1 6-6z" />
+                  <path d="M2 9h4v11H2z" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </span>
+              <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://youtube.com/@ParaPlatforms"
+            target="_blank"
+            rel="noopener noreferrer"
+              className="tlink contact-link text-sm w-fit"
+          >
+              <span className="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2.5" y="6" width="19" height="12" rx="3" />
+                  <path d="m10 10 5 2-5 2z" />
+                </svg>
+              </span>
+              <span>YouTube</span>
           </a>
         </div>
       </section>
+
+      {isResumePreviewOpen ? (
+        <div
+          className="resume-modal-backdrop"
+          role="presentation"
+          onClick={() => setIsResumePreviewOpen(false)}
+        >
+          <div
+            id="resume-preview-dialog"
+            className="resume-modal-shell"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Resume preview"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="resume-modal-header">
+              <p className="resume-modal-title">Resume Preview</p>
+              <button
+                type="button"
+                className="resume-modal-close"
+                onClick={() => setIsResumePreviewOpen(false)}
+                aria-label="Close resume preview"
+              >
+                Close
+              </button>
+            </div>
+
+            <div className="resume-modal-image-wrap">
+              <img
+                src="/resume.png"
+                alt="Preview of Shanmukha's resume"
+                className="resume-modal-image"
+              />
+            </div>
+
+            <a
+              href="/resume.pdf"
+              className="resume-modal-download"
+              aria-label="Download resume PDF"
+            >
+              Download PDF ↓
+            </a>
+          </div>
+        </div>
+      ) : null}
 
       {/* ── Footer ──────────────────────────────────────────────────── */}
       <footer className="max-w-3xl mx-auto px-6 sm:px-10 py-8 border-t border-[#161616] flex items-center justify-between">
