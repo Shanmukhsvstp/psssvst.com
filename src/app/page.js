@@ -526,13 +526,13 @@ export default function Home() {
                 {category.charAt(0).toUpperCase() + category.slice(1)}:
               </p>
               <p
-                className="text-[0.75rem] text-[#6b6b6b] leading-loose"
+                className="stack-line text-[0.75rem] text-[#6b6b6b] leading-loose"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 {items.map((item, i) => (
-                  <span key={item}>
+                  <span key={item} className="stack-item">
                     {item}
-                    {i < items.length - 1 ? "\u00A0·\u00A0" : ""}
+                    {i < items.length - 1 ? " · " : ""}
                   </span>
                 ))}
               </p>

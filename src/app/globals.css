@@ -651,6 +651,16 @@ a.experience-company:focus-visible {
   opacity: 0.9;
 }
 
+/* ─── Stack section ──────────────────────────────────────────────── */
+.stack-line {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.stack-item {
+  white-space: normal;
+}
+
 /* ─── Resume preview modal ───────────────────────────────────────── */
 .resume-actions {
   display: flex;
@@ -990,6 +1000,11 @@ a:focus-visible {
     max-width: 100%;
   }
 
+  .stack-line {
+    font-size: 0.72rem;
+    line-height: 1.9;
+  }
+
   .contact-link .contact-icon {
     flex: 0 0 auto;
   }
@@ -1029,6 +1044,11 @@ a:focus-visible {
 
   .row-tags {
     font-size: 0.64rem;
+  }
+
+  .stack-line {
+    font-size: 0.69rem;
+    line-height: 1.85;
   }
 
   .row-desc-item,
