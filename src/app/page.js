@@ -2,28 +2,77 @@ export default function Home() {
   const projects = [
     {
       num: "01",
-      title: "Project Alpha",
-      desc: "SaaS dashboard with real-time data visualisation and role-based access control.",
-      tags: "Next.js · TypeScript · PostgreSQL",
-      year: "2024",
-      href: "#",
+      title: "NeuraBench",
+      desc: "A complete NPU benchmarking suite built with WinUI3",
+      tags: "WinUI3 · C++",
+      year: "2026",
+      status: "Under Development",
+      href: "https://neurabench.com",
     },
     {
       num: "02",
-      title: "Project Beta",
-      desc: "AI writing assistant using language models to suggest, refine, and structure content.",
-      tags: "Python · FastAPI · React",
-      year: "2024",
-      href: "#",
+      title: "NPU Stress Tester",
+      desc: "A simple NPU Stress Testing tool built with python and tkinter",
+      tags: "Python · Tkinter",
+      year: "2025",
+      status: "Live",
+      href: "https://nputest.com",
     },
     {
       num: "03",
-      title: "Project Gamma",
-      desc: "Developer CLI toolkit that reduces project scaffolding from hours to seconds.",
-      tags: "Node.js · CLI · Docker",
-      year: "2023",
-      href: "#",
+      title: "ConferIt (Formely PsMeet)",
+      desc: "Zoom-like video conferencing app (under development)",
+      tags: "Node.js · WebRTC · NextJS",
+      year: "2025",
+      status: "In Progress",
+      href: "https://conferit.com",
     },
+    {
+      num: "04",
+      title: "ViewGrow",
+      desc: "A simple YouTube growth application",
+      tags: "Android · Java",
+      year: "2025",
+      status: "Live",
+      href: "https://play.google.com/store/apps/details?id=com.parapf.viewgrow",
+    },
+    {
+      num: "05",
+      title: "Chess Online",
+      desc: "Multiplayer chess application with real-time gameplay",
+      tags: "WebSockets · React",
+      year: "2025",
+      status: "In Progress",
+      github: "https://github.com/parapf/chess-online",
+      href: "https://chess-by-pss.web.app",
+    },
+    {
+      num: "06",
+      title: "TechEcho",
+      desc: "Tech news website providing latest updates",
+      tags: "HTML",
+      year: "2024",
+      status: "Live",
+      href: "https://parapf.com/",
+    },
+    {
+      num: "07",
+      title: "URL Shortener",
+      desc: "Simple URL shortener built with HTML, JS and Firebase",
+      tags: "Firebase · JavaScript",
+      year: "2023",
+      status: "Live",
+      href: "https://pssurl.web.app",
+    },
+    // {
+    //   num: "08",
+    //   title: "Para Store",
+    //   desc: "Online store for computer parts",
+    //   tags: "E-commerce · React",
+    //   year: "2025",
+    //   status: "Live",
+    //   href: "https://parastore.in/",
+    // },
   ];
 
   return (
@@ -80,20 +129,46 @@ export default function Home() {
 
         <div>
           {projects.map((p) => (
-            <a key={p.num} href={p.href} className="project-row group">
+            <div key={p.num} className="project-row group">
               <span className="row-num">{p.num}</span>
               <div className="row-body">
                 <div className="row-top">
-                  <span className="row-title">{p.title}</span>
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="row-title-link"
+                  >
+                    <span className="row-title">{p.title}</span>
+                  </a>
                   <span className="row-meta">
                     <span className="row-year">{p.year}</span>
-                    <span className="row-arrow">↗</span>
+                    {p.github ? (
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="row-github"
+                        aria-label={`${p.title} GitHub repository`}
+                      >
+                        GitHub
+                      </a>
+                    ) : null}
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="row-arrow"
+                      aria-label={`Open ${p.title}`}
+                    >
+                      ↗
+                    </a>
                   </span>
                 </div>
                 <p className="row-tags">{p.tags}</p>
                 <p className="row-desc sm:block line-clamp-2 sm:line-clamp-none">{p.desc}</p>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </section>
@@ -109,9 +184,9 @@ export default function Home() {
             className="space-y-1 text-[0.7rem] text-[#2e2e2e] leading-relaxed pt-0.5"
             style={{ fontFamily: "var(--font-mono)" }}
           >
-            <p>India</p>
-            <p>Remote-friendly</p>
-            <p>Full-stack</p>
+            {/* <p>India</p>
+            <p>Remote-friendly</p> */}
+            <p>psssvst</p>
           </div>
 
           <div className="space-y-5 text-[0.875rem] text-[#6b6b6b] leading-[1.9]">
@@ -155,9 +230,9 @@ export default function Home() {
           style={{ fontFamily: "var(--font-mono)" }}
         >
           JavaScript&nbsp;·&nbsp;Java&nbsp;·&nbsp;Go&nbsp;·&nbsp;Kotlin&nbsp;·&nbsp;C&nbsp;·&nbsp;C++&nbsp;·&nbsp;Python&nbsp;·&nbsp;
-React&nbsp;·&nbsp;Next.js&nbsp;·&nbsp;Node.js&nbsp;·&nbsp;Express&nbsp;·&nbsp;Android (Flutter and Android Studio)&nbsp;·&nbsp;
-MongoDB&nbsp;·&nbsp;Firebase&nbsp;·&nbsp;Supabase&nbsp;·&nbsp;MinIO&nbsp;·&nbsp;
-Git&nbsp;·&nbsp;Cloudflare (Tunnels)&nbsp;·&nbsp;Netlify&nbsp;·&nbsp;Vercel&nbsp;·&nbsp;VPS's (Ubuntu)
+          React&nbsp;·&nbsp;Next.js&nbsp;·&nbsp;Node.js&nbsp;·&nbsp;Express&nbsp;·&nbsp;Android (Flutter and Android Studio)&nbsp;·&nbsp;
+          MongoDB&nbsp;·&nbsp;Firebase&nbsp;·&nbsp;Supabase&nbsp;·&nbsp;MinIO&nbsp;·&nbsp;
+          Git&nbsp;·&nbsp;Cloudflare (Tunnels)&nbsp;·&nbsp;Netlify&nbsp;·&nbsp;Vercel&nbsp;·&nbsp;VPS's (Ubuntu)
         </p>
       </section>
 

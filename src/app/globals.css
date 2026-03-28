@@ -16,6 +16,11 @@
   --font-mono:  "Fira Code", ui-monospace, "Cascadia Code", "Consolas", monospace;
 }
 
+::selection {
+  color: var(--fg-2); /* Changes the text color of the selection */
+  background: var(--amber); /* Changes the highlight/background color */
+}
+
 /* ─── Base ────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -113,6 +118,11 @@ body {
   transition: color 0.15s;
 }
 
+.row-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .row-meta {
   display: flex;
   align-items: center;
@@ -124,6 +134,20 @@ body {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: var(--fg-3);
+}
+
+.row-github {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--fg-3);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.row-github:hover {
+  color: var(--amber);
+  border-color: var(--amber);
 }
 
 .row-arrow {
