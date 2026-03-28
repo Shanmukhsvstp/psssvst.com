@@ -252,11 +252,11 @@ export default function Home() {
 
       {/* ── Nav ─────────────────────────────────────────────────────── */}
       <header className="fixed top-0 inset-x-0 z-50 border-b border-[#161616] bg-[#0a0a0a]/90 backdrop-blur-sm">
-        <div className="max-w-3xl mx-auto px-6 sm:px-10 h-14 flex items-center justify-between">
+        <div className="site-header-inner max-w-3xl mx-auto px-6 sm:px-10 h-14 flex items-center justify-between">
           <a href="#home" className="text-sm font-medium text-[#dedad3] no-underline">
             Home
           </a>
-          <nav className="flex items-center gap-7">
+          <nav className="site-nav flex items-center gap-7">
             <a href="#about" className="nav-item">About</a>
             <a href="#work" className="nav-item">Work</a>
             <a href="#experience" className="nav-item">Experience</a>
